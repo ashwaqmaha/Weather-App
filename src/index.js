@@ -9,9 +9,8 @@ function displayInfo(response) {
 function search(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#search-input");
-//   let apiKey = "5aa9fb62d0a7bb52efo9b7105t3487b2";
-  let url = `http://localhost:3000/weather?query=${searchInputElement.value}`;
-//   let url = `https://api.shecodes.io/weather/v1/current?query=${searchInputElement.value}&key=${apiKey}`;
+  let apiKey = "5aa9fb62d0a7bb52efo9b7105t3487b2";
+  let url = `https://api.shecodes.io/weather/v1/current?query=${searchInputElement.value}&key=${apiKey}`;
   axios.get(url).then(displayInfo);
 }
 
