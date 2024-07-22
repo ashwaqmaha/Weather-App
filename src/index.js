@@ -1,10 +1,16 @@
 function displayInfo(response) {
-    // testing
   console.log(response);
   let cityElement = document.querySelector("#current-city");
   let currentTemperature = document.querySelector(".current-temperature-value");
+  let timeElement = document.querySelector("#current-date");
+  let descriptionElement = document.querySelector(".current-description");
+
   cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
   currentTemperature.innerHTML = Math.round(response.data.temperature.current);
+  let date = new Date(response.data.time * 1000);
+  let formatedDate = formatDate(date);
+  timeElement.innerHTML = formatedDate;
 }
 
 function search(event) {
@@ -15,10 +21,10 @@ function search(event) {
   axios.get(url).then(displayInfo);
 }
 
-function formatDate(date) {
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  let day = date.getDay();
+function formatDate(latestTime) {
+  let minutes = latestTime.getMinutes();
+  let hours = latestTime.getHours();
+  let day = latestTime.getDay();
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -45,7 +51,7 @@ function formatDate(date) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-let currentDateELement = document.querySelector("#current-date");
-let currentDate = new Date();
+// let currentDateELement = document.querySelector("#current-date");
+// let currentDate = new Date();
 
-currentDateELement.innerHTML = formatDate(currentDate);
+// currentDateELement.innerHTML = formatDate(currentDate);
