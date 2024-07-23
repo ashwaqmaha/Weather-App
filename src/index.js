@@ -4,7 +4,11 @@ function displayInfo(response) {
   let currentTemperature = document.querySelector(".current-temperature-value");
   let timeElement = document.querySelector("#current-date");
   let descriptionElement = document.querySelector(".current-description");
+  let humidityElement = document.querySelector(".humidity");
+  let windElement = document.querySelector(".wind");
 
+  windElement.innerHTML = `${response.data.wind.speed}km/h`;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
   currentTemperature.innerHTML = Math.round(response.data.temperature.current);
