@@ -6,7 +6,13 @@ function displayInfo(response) {
   let descriptionElement = document.querySelector(".current-description");
   let humidityElement = document.querySelector(".humidity");
   let windElement = document.querySelector(".wind");
+  let iconElement = document.querySelector("#icon");
 
+  iconElement.innerHTML = `<img
+                  class="current-temperature-icon"
+                  src="${response.data.condition.icon_url}"
+                  alt=""
+                />`;
   windElement.innerHTML = `${response.data.wind.speed}km/h`;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   cityElement.innerHTML = response.data.city;
@@ -22,6 +28,12 @@ function search(event) {
   let searchInputElement = document.querySelector("#search-input");
   let apiKey = "5aa9fb62d0a7bb52efo9b7105t3487b2";
   let url = `https://api.shecodes.io/weather/v1/current?query=${searchInputElement.value}&key=${apiKey}`;
+  axios.get(url).then(displayInfo);
+}
+
+function defaultCity(city) {
+  let apiKey = "5aa9fb62d0a7bb52efo9b7105t3487b2";
+  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(url).then(displayInfo);
 }
 
@@ -55,7 +67,4 @@ function formatDate(latestTime) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
-// let currentDateELement = document.querySelector("#current-date");
-// let currentDate = new Date();
-
-// currentDateELement.innerHTML = formatDate(currentDate);
+defaultCity("cape town");

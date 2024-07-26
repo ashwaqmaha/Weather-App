@@ -43,7 +43,7 @@ header {
 }
 
 main {
-  padding: 30px 0;
+  padding: 50px 0 30px;
 }
 
 .current-temperature {
@@ -72,10 +72,12 @@ main {
 }
 
 .current-temperature-icon {
+  display: inline;
   position: relative;
-  top: -8px;
+  top: 14px;
+  line-height: 1;
   font-size: 40px;
-  margin-right: 10px;
+  margin-right: -11px;
 }
 
 .current-temperature-value {
